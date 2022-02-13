@@ -31,11 +31,11 @@ public class Notes {
         this.recipe = recipe;
     }
 
-    public String getNotes() {
+    public String getRecipeNote() {
         return recipeNotes;
     }
 
-    public void setNotes(String recipeNotes) {
+    public void setRecipeNote(String recipeNotes) {
         this.recipeNotes = recipeNotes;
     }
 }
