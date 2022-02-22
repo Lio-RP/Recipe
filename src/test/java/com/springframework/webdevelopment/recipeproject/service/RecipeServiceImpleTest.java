@@ -1,5 +1,7 @@
 package com.springframework.webdevelopment.recipeproject.service;
 
+import com.springframework.webdevelopment.recipeproject.converters.RecipeCommandToRecipe;
+import com.springframework.webdevelopment.recipeproject.converters.RecipeToRecipeCommand;
 import com.springframework.webdevelopment.recipeproject.domain.Recipe;
 import com.springframework.webdevelopment.recipeproject.repositories.RecipeRepository;
 import org.junit.Before;
@@ -22,11 +24,17 @@ public class RecipeServiceImpleTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe convertToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand convertToRecipeCommand;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImple(recipeRepository);
+        recipeService = new RecipeServiceImple(recipeRepository, convertToRecipe, convertToRecipeCommand);
     }
 
     @Test
