@@ -27,15 +27,15 @@ public class UnitOfMeasureRepositoryIT {
 
     @Test
     public void findByUom() {
-        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByUom("Tablespoon");
+        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription("Tablespoon");
 
-        assertEquals("Tablespoon", unitOfMeasure.get().getUom());
+        assertEquals("Tablespoon", unitOfMeasure.get().getDescription());
     }
 
     @Test
     public void findByUomCup() {
-        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByUom("Cup");
+        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription("Cup");
 
-        assertEquals("Cup", unitOfMeasure.get().getUom());
+        assertEquals("Cup", unitOfMeasure.get().getDescription());
     }
 }

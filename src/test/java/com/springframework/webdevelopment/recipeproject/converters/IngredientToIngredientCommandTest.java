@@ -46,7 +46,7 @@ class IngredientToIngredientCommandTest {
         UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
         unitOfMeasure.setId(2L);
 
-        ingredient.setUnitOfMeasure(unitOfMeasure);
+        ingredient.setUom(unitOfMeasure);
 
         //When:
         IngredientCommand ingredientCommand = converter.convert(ingredient);
@@ -64,7 +64,8 @@ class IngredientToIngredientCommandTest {
         ingredient.setId(1L);
         ingredient.setDescription("descript.");
         ingredient.setAmount(new BigDecimal(12345));
-        ingredient.setUnitOfMeasure(null);
+        ingredient.setUom(null);
+        ingredient.setRecipe(null);
 
         //When:
         IngredientCommand ingredientCommand = converter.convert(ingredient);

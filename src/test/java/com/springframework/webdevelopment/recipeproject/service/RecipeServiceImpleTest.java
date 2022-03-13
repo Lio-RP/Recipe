@@ -3,6 +3,7 @@ package com.springframework.webdevelopment.recipeproject.service;
 import com.springframework.webdevelopment.recipeproject.converters.RecipeCommandToRecipe;
 import com.springframework.webdevelopment.recipeproject.converters.RecipeToRecipeCommand;
 import com.springframework.webdevelopment.recipeproject.domain.Recipe;
+import com.springframework.webdevelopment.recipeproject.exceptions.NotFoundException;
 import com.springframework.webdevelopment.recipeproject.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -73,5 +74,33 @@ public class RecipeServiceImpleTest {
         assertNotNull(foundedRecipe);
         assertEquals(recipe.getId(), foundedRecipe.getId());
         verify(recipeRepository, times(1)).findById(anyLong());
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipesByIdNotFound() throws Exception{
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe foundedRecipe = recipeService.findById(1L);
+
+    }
+
+    @Test
+    public void testDeleteById(){
+
+        //Given:
+        Recipe recipe = new Recipe();
+        recipe.setId(2L);
+
+        //When:
+        recipeService.deleteById(2L);
+
+        //NO 'when' since method does not return any type, has void type.;
+
+        //Then
+        verify(recipeRepository, times(1)).deleteById(2L);
+
+
     }
 }

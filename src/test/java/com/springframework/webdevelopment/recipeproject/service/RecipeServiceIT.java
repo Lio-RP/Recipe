@@ -54,4 +54,20 @@ class RecipeServiceIT {
 
 
     }
+
+    @Transactional
+    @Test
+    void testGetByCommandId(){
+
+        //Given
+        Long id = 1L;
+
+        //When
+        RecipeCommand recipeCommand = recipeService.findByCommandId(id);
+
+        //then
+        assertEquals(id, recipeCommand.getId());
+
+
+    }
 }

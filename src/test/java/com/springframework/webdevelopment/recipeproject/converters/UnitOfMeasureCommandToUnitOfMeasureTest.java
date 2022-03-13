@@ -21,14 +21,14 @@ class UnitOfMeasureCommandToUnitOfMeasureTest {
         //Given:
         UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
         unitOfMeasureCommand.setId(1L);
-        unitOfMeasureCommand.setUom("TableSpoon");
+        unitOfMeasureCommand.setDescription("TableSpoon");
 
         //When:
         UnitOfMeasure unitOfMeasure = converer.convert(unitOfMeasureCommand);
 
         //then:
         assertEquals(1L, unitOfMeasure.getId());
-        assertEquals("TableSpoon", unitOfMeasure.getUom());
+        assertEquals("TableSpoon", unitOfMeasure.getDescription());
     }
 
     @Test

@@ -17,25 +17,42 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
+<!--/*@thymesVar id="recipe" type="com.springframework.webdevelopment.recipeproject.domain.Recipe"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#" class="btn btn-default" th:href="@{'/recipe/' + ${recipe.getId()}  + '/image'}">Change Image</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
                                 <h5>Categories:</h5>
                             </div>
-                            <div class="col-md-9" th:each="category : ${recipe.categories}">
+                            <div class="col-md-3">
                                 <ul>
-                                    <li th:text="${category.description}">cat one</li>
+                                    <li th:each="category : ${recipe.categories}"
+                                        th:text="${category.getDescription()}">cat one</li>
                                     <!--<li>cat two</li>
                                     <li>cat three</li>-->
                                 </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="../../static/images/guacamole400x400WithX.jpg"
+                                     th:src="@{'/recipe/' + ${recipe.getId()} + '/recipeimage'}"
+                                     width="200" height="200">
+                                <!--<img src="../../static/images/guacamole400x400WithX.jpg"
+                                        th:src="@{/images/guacamole400x400WithX.jpg}"
+                                        width="200" height="200">-->
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +66,7 @@
                                 <h5>Difficulty:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${recipe.getDifficulty().EASY}">Easy</p>
+                                <p th:text="${recipe.difficulty}">Easy</p>
                             </div>
                         </div>
                         <div class="row">
@@ -84,14 +101,22 @@
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1 class="panel-title" >Ingredients</h1>
+                        <div class="row">
+                            <div class="col-md-11">
+                                <h1 class="panel-title" >Ingredients</h1>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12" th:each="ingredient : ${recipe.ingredients}">
                                 <ul>
                                     <li th:text="${(ingredient.getAmount()) +
-                                                ' ' + (ingredient.unitOfMeasure.getUom()) +
+                                                ' ' + (ingredient.getUom().getDescription()) +
                                                 '_' + (ingredient.getDescription())}">1 Cup of milk</li>
 <!--                                    <li>1 Teaspoon of chocolate</li>
                                     <li>1 Teaspoon of Sugar</li>-->
@@ -124,6 +149,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}">Delete</a>
             </div>
         </div>
     </div>

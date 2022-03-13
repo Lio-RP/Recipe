@@ -46,7 +46,7 @@ class IngredientCommandToIngredientTest {
         UnitOfMeasureCommand unitOfMeasure = new UnitOfMeasureCommand();
         unitOfMeasure.setId(2L);
 
-        ingredientCommand.setUnitOfMeasureCommand(unitOfMeasure);
+        ingredientCommand.setUom(unitOfMeasure);
 
         //When:
         Ingredient ingredient = converter.convert(ingredientCommand);
@@ -55,7 +55,7 @@ class IngredientCommandToIngredientTest {
         assertEquals(1L, ingredientCommand.getId());
         assertEquals("descript.", ingredientCommand.getDescription());
         assertEquals(new BigDecimal(12345), ingredientCommand.getAmount());
-        assertEquals(2L, ingredientCommand.getUnitOfMeasureCommand().getId());
+        assertEquals(2L, ingredientCommand.getUom().getId());
     }
 
     @Test
@@ -66,7 +66,7 @@ class IngredientCommandToIngredientTest {
         ingredientCommand.setId(1L);
         ingredientCommand.setDescription("descript.");
         ingredientCommand.setAmount(new BigDecimal(12345));
-        ingredientCommand.setUnitOfMeasureCommand(null);
+        ingredientCommand.setUom(null);
 
         //When:
         Ingredient ingredient = converter.convert(ingredientCommand);
@@ -75,7 +75,7 @@ class IngredientCommandToIngredientTest {
         assertEquals(1L, ingredientCommand.getId());
         assertEquals("descript.", ingredientCommand.getDescription());
         assertEquals(new BigDecimal(12345), ingredientCommand.getAmount());
-        assertEquals(null, ingredientCommand.getUnitOfMeasureCommand());
-        assertNull(ingredientCommand.getUnitOfMeasureCommand());
+        assertEquals(null, ingredientCommand.getUom());
+        assertNull(ingredientCommand.getUom());
     }
 }
