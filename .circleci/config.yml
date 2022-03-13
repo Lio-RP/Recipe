@@ -8,7 +8,8 @@ jobs:
     docker:
       # specify the version you desire here
       #- image: circleci/openjdk:8-jdk
-      - image: cimg/openjdk:17.0.1
+      #- image: cimg/openjdk:17.0.1
+      - image: circleci/openjdk:11-browsers-legacy
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
